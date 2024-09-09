@@ -30,9 +30,7 @@ export const counterSlice = createSlice({
       const index = action.payload;
       if (state.counters.length > 1) {
         state.counters.splice(index, 1); 
-        // splice Remove a counter from the array at a specific index
       }
-    
     },
   },
 });

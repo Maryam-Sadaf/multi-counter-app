@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { increment, decrement, addCounter, removeCounter, removeCounterByIndex } from './redux/slices/counterSlice';
-import './App.css';
+import Table from "../src/components/Table"
+import '../src/styles/App.css';
 
 function App() {
   const counters = useSelector((state) => state.counter.counters);
@@ -61,6 +62,9 @@ function App() {
       </div>
 
       {counters.length >= 5 && <p className="max-message">You can only have a maximum of 5 counters.</p>}
+
+      {/* Render the Table component */}
+      <Table />
     </div>
   );
 }
