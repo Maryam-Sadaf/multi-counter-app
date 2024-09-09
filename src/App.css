@@ -1,0 +1,85 @@
+/* src/App.css */
+
+.App {
+  text-align: center;
+  padding: 50px;
+  font-family: Arial, sans-serif;
+  margin: 0%;
+  padding: 0%;
+}
+
+h1 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.counter-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.counter-display {
+  font-size: 2rem;
+  padding: 0 20px;
+  width: 100px;
+  text-align: center;
+  color: #fff;
+  background-color: #4CAF50;
+  border-radius: 8px;
+  margin: 0 20px;
+}
+
+.counter-button {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+.increment {
+  background-color: #4CAF50;
+}
+
+.decrement {
+  background-color: #f44336;
+}
+
+.counter-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.controls {
+  margin-top: 30px;
+}
+
+.control-button {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  background-color: #2196F3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+}
+
+.control-button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+}
+
+.control-button:hover:enabled {
+  background-color: #1976D2;
+}
+
+.max-message {
+  color: red;
+  margin-top: 20px;
+}
