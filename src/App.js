@@ -3,17 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { increment, decrement, addCounter, removeCounter, removeCounterByIndex } from './redux/slices/counterSlice';
 import Table from "../src/components/Table"
 import '../src/styles/App.css';
-
+import UserForm from './components/Form';
 function App() {
   const counters = useSelector((state) => state.counter.counters);
   const dispatch = useDispatch();
-
-  // Calculate the total sum of all counters
   const totalSum = counters.reduce((total, count) => total + count, 0);
 
   return (
     <div className="App">
-      {/* Display the total sum of all counters */}
+            <UserForm/>
       <h2>Total Sum: {totalSum}</h2>
 
       <h1>Multi Counter</h1>
@@ -65,6 +63,7 @@ function App() {
 
       {/* Render the Table component */}
       <Table />
+      <UserForm/>
     </div>
   );
 }

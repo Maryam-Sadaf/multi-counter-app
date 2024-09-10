@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 const initialState = {
   posts: [],
   status: 'idle',
@@ -12,9 +13,13 @@ export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
   return response.data;
 });
 
-// Create an async thunk to update a post
+// Create an async thunk to update a post using PUT
 export const updatePost = createAsyncThunk('posts/updatePost', async ({ id, data }) => {
-  const response = await axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, data);
+  const response = await axios.put(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+    title: data.title,
+    body: data.body,
+    userId: 1, // Simulated userId for consistency
+  });
   return response.data;
 });
 
@@ -24,10 +29,11 @@ export const deletePost = createAsyncThunk('posts/deletePost', async (id) => {
   return id;
 });
 
+// Create an async thunk to add a new post
 export const addPost = createAsyncThunk('posts/addPost', async (newPost) => {
-    const response = await axios.post('https://jsonplaceholder.typicode.com/posts', newPost);
-    return response.data;
-  });
+  const response = await axios.post('https://jsonplaceholder.typicode.com/posts', newPost);
+  return response.data;
+});
 
 const postsSlice = createSlice({
   name: 'posts',
@@ -51,15 +57,16 @@ const postsSlice = createSlice({
       })
       .addCase(updatePost.fulfilled, (state, action) => {
         const updatedPost = action.payload;
-        const index = state.posts.findIndex(post => post.id === updatedPost.id);
+        const index = state.posts.findIndex((post) => post.id === updatedPost.id);
         if (index !== -1) {
           state.posts[index] = updatedPost;
         }
       })
       .addCase(deletePost.fulfilled, (state, action) => {
         const id = action.payload;
-        state.posts = state.posts.filter(post => post.id !== id);
+        state.posts = state.posts.filter((post) => post.id !== id);
       });
   },
 });
+
 export default postsSlice.reducer;

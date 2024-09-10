@@ -18,7 +18,7 @@ function Table() {
   const [editingPostId, setEditingPostId] = useState(null);
   const [editedTitle, setEditedTitle] = useState('');
   const [editedBody, setEditedBody] = useState('');
-
+  
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchPosts());
@@ -26,25 +26,35 @@ function Table() {
   }, [dispatch, status]);
 
   const handleAddPost = () => {
+    const lastPost = posts[posts.length -1]
+    console.log("lastindex",lastPost);
     const newPost = {
       title: newTitle,
       body: newBody,
-      userId: 1, // Simulated userId
+      userId:lastPost.userId + 1,
+
     };
     dispatch(addPost(newPost));
     setNewTitle('');
     setNewBody('');
     setShowAddForm(false); // Close the form after adding
   };
+
   const handleEditClick = (post) => {
     setEditingPostId(post.id);
     setEditedTitle(post.title);
     setEditedBody(post.body);
   };
+
   const handleUpdate = (postId) => {
-    dispatch(updatePost({ id: postId, title: editedTitle, body: editedBody }));
-    setEditingPostId(null);
+    const updatedData = {
+      title: editedTitle,
+      body: editedBody,
+    };
+    dispatch(updatePost({ id: postId, data: updatedData }));
+    setEditingPostId(null); // Close the editing after saving
   };
+
   const handleDelete = (postId) => {
     dispatch(deletePost(postId));
   };
@@ -126,6 +136,7 @@ function Table() {
       {showAddForm && (
         <div className="add-post-form">
           <h2>Add New Post</h2>
+          <h>id</h>
           <label>
             Title:
             <input
