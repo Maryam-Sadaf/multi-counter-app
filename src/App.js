@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div className="App">
-            <UserForm/>
+      <UserForm />
       <h2>Total Sum: {totalSum}</h2>
 
       <h1>Multi Counter</h1>
@@ -60,10 +60,10 @@ function App() {
       </div>
 
       {counters.length >= 5 && <p className="max-message">You can only have a maximum of 5 counters.</p>}
-
-      {/* Render the Table component */}
+    
+    
       <Table />
-      <UserForm/>
+
     </div>
   );
 }

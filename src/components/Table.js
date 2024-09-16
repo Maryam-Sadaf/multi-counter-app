@@ -18,7 +18,7 @@ function Table() {
   const [editingPostId, setEditingPostId] = useState(null);
   const [editedTitle, setEditedTitle] = useState('');
   const [editedBody, setEditedBody] = useState('');
-  
+
   useEffect(() => {
     if (status === 'idle') {
       dispatch(fetchPosts());
@@ -26,18 +26,18 @@ function Table() {
   }, [dispatch, status]);
 
   const handleAddPost = () => {
-    const lastPost = posts[posts.length -1]
-    console.log("lastindex",lastPost);
+    // const lastPost = posts[posts.length -1]
+    // console.log("lastindex",lastPost);
     const newPost = {
       title: newTitle,
       body: newBody,
-      userId:lastPost.userId + 1,
+      // userId:lastPost.userId + 1,
 
     };
     dispatch(addPost(newPost));
     setNewTitle('');
     setNewBody('');
-    setShowAddForm(false); // Close the form after adding
+    setShowAddForm(false);
   };
 
   const handleEditClick = (post) => {
@@ -52,7 +52,7 @@ function Table() {
       body: editedBody,
     };
     dispatch(updatePost({ id: postId, data: updatedData }));
-    setEditingPostId(null); // Close the editing after saving
+    setEditingPostId(null);
   };
 
   const handleDelete = (postId) => {
